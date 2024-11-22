@@ -1,6 +1,5 @@
 const gridSize = +prompt("Enter grid size \n eg. 16X16 , 2X2")
 const sketchBoard = document.querySelector(".container");
-let pieceOpacity = 0.2;
 
 function randomColorGenerator() {
     let color = "#";
@@ -20,7 +19,7 @@ function addSketchPieces() {
         const piece = document.createElement("div")
         piece.style = `height : ${600/gridSize}px ; width : ${600/gridSize}px`
         piece.style.cursor = "pointer"
-        piece.style.opacity = pieceOpacity
+        piece.style.opacity = 0.1
         piece.classList.add("sketch-piece")
         sketchBoard.append(piece)
     }
@@ -29,15 +28,12 @@ function addSketchPieces() {
 
 
 addSketchPieces()
-randomColorGenerator()
 const pieces = document.querySelectorAll(".sketch-piece")
 pieces.forEach((piece,index)=>{
     piece.addEventListener("mouseover",()=>{
-        if (pieceOpacity < 1) {
-            pieceOpacity = pieceOpacity + 0.01
-        }
-        piece.style.opacity = pieceOpacity
+
+        piece.style.opacity = +piece.style.opacity + 0.1
         piece.style.backgroundColor = randomColorGenerator()
-        
+        // piece.style.backgroundColor = "#000000"
     })
 })
